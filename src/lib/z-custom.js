@@ -62,41 +62,39 @@ $(window).scroll(function() {
 
 
 
-$("#contactForm").on("submit", function(e) {
+// $("#contactForm").on("submit", function(e) {
 
-    var form = $(this)[0];
-    var submitButton = $(this).find('button[type="submit"]');
+//     var form = $(this)[0];
+//     var submitButton = $(this).find('button[type="submit"]');
 
-    $(submitButton).text('Loading ...').prop('disabled', true);
+//     $(submitButton).text('Loading ...').prop('disabled', true);
 
-    if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-        form.classList.add('was-validated');
-        submitButton.text('Inquire Us').prop('disabled', false);
-        return false;
-    }
+//     if (form.checkValidity() === false) {
+//         event.preventDefault();
+//         event.stopPropagation();
+//         form.classList.add('was-validated');
+//         submitButton.text('Inquire Us').prop('disabled', false);
+//         return false;
+//     }
 
-    var dataString = $(this).serialize();
+//     var dataString = $(this).serialize();
 
-    // alert(dataString); return false;
+//     $.ajax({
+//         type: "POST",
+//         url: "formmailer/mailer.php",
+//         data: dataString,
+//         success: function() {
+//             $("#contactForm").html("<div id='message' class='text-center'></div>");
+//             $("#message")
+//                 .html("<h2>Thank you for contacting us!</h2>")
+//                 .append("<p>We will be in touch soon.</p>")
+//                 .hide()
+//                 .fadeIn(1500);
+//         }
+//     });
 
-    $.ajax({
-        type: "POST",
-        url: "formmailer/mailer.php",
-        data: dataString,
-        success: function() {
-            $("#contactForm").html("<div id='message' class='text-center'></div>");
-            $("#message")
-                .html("<h2>Thank you for contacting us!</h2>")
-                .append("<p>We will be in touch soon.</p>")
-                .hide()
-                .fadeIn(1500);
-        }
-    });
-
-    e.preventDefault();
-});
+//     e.preventDefault();
+// });
 
 (function() {
     var elements;

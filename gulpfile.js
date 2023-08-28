@@ -1,5 +1,6 @@
 const { src, dest, series, parallel, watch } = require('gulp');
 const fileinclude = require('gulp-file-include');
+const concat = require('gulp-concat');
 const sass = require('gulp-sass')(require('sass'));
 // const autoprefixer = require('gulp-autoprefixer');
 // const cleanCss = require('gulp-clean-css');
@@ -25,7 +26,7 @@ function css() {
         // .pipe(rename('main.css'))
         // .pipe(cleanCss())
         // .pipe(autoprefixer())
-        .pipe(fileinclude())
+        .pipe(concat('style.css'))
         .pipe(dest('build'))
         .pipe(browserSync.stream());
 }
@@ -85,7 +86,7 @@ function dev(){
         server: './build'
     });
     watch('src/**/*.html', html);
-    watch('src/**/*.scss', css);
+    watch('src/**/*.css', css);
     watch('src/**/*.ts', tscript);
     watch('src/assets/**/*', images);
 }

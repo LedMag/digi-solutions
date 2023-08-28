@@ -1,0 +1,17 @@
+.modale {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(70, 70, 70, 0);
+    z-index: 2000;
+}
+
+.active {
+    display: flex;
+    background-color: rgba(70, 70, 70, 0.5);
+}
