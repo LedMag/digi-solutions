@@ -39,8 +39,8 @@ function js() {
 }
 
 function tscript() {
-    return src(['src/**/*.ts', '!src/components/**/*.ts'])
-        .pipe(fileinclude())
+    return src(['src/i18n/*.ts', 'src/components/**/*.ts', 'src/main.ts'])
+        .pipe(concat('index.ts'))
         // .pipe(browserify({ transform: [babelify.configure({ presets: ['@babel/preset-env'] })] }))
         // .pipe(uglify({
         //     toplevel: true
