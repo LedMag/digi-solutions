@@ -51,7 +51,8 @@ Array.from(forms).map( form => {
         const formData = new FormData(form);
 
         const data = {
-            user: `${formData.get('first_name')} ${formData.get('last_name')}`,
+            name: formData.get('first_name'),
+            last_name: formData.get('last_name'),
             phone: formData.get('phone'),
             email: formData.get('email'),
             message: formData.get('message')
@@ -59,9 +60,26 @@ Array.from(forms).map( form => {
 
         console.log(data); 
 
-        modale.classList.toggle('activeModale');
-
-        form.reset();
+        fetch("https://formsubmit.co/ajax/ledmaggazin@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            form.reset();
+            modale.classList.remove('activeModale');
+        })
+        .catch(error => {
+            alert(`Something went wrong\n${error.message}`)
+        })
+        .finally( () => {
+            buttonFrom.innerText = 'Inquire Us'
+            buttonFrom.disabled = false;
+        });
     });
 });
 
