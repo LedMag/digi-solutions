@@ -1,0 +1,45 @@
+.lang {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #f8f8f8;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    padding: 0 3px 0 3px;
+    color: #0f2435;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@media only screen and (min-width : 901px) {
+    .lang:hover {
+        background-color: #0f2435;
+        color: #f8f8f8;
+    }
+}
+
+.lang:focus {
+    border: none;
+    outline: none;
+}
+
+.lang option {
+    background-color: #f8f8f8;
+    outline: none;
+    border: none;
+    color: #0f2435;
+    font-weight: 600;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.lang option:checked {
+    background-color: #0f2435 ;
+    color: #fff;
+}
+
+.lang option:hover {
+    background-color: #50b3aa;
+    color: #fff;
+}

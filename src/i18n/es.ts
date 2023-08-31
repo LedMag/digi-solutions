@@ -21,7 +21,7 @@ const ES = {
     "links": {
         "home": "Inicio",
         "about": "Sobre nosotros",
-        "faqs": "Preguntas frecuentes",
+        "faqs": "FAQs",
         "contacts": "Contactos"
     },
     "home": {

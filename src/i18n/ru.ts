@@ -21,7 +21,7 @@ const RU = {
     "links": {
         "home": "Главная",
         "about": "О нас",
-        "faqs": "Часто задаваемые вопросы",
+        "faqs": "FAQs",
         "contacts": "Контакты"
     },
     "home": {
