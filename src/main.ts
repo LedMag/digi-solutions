@@ -72,6 +72,7 @@ Array.from(forms).map( form => {
         .then(data => {
             form.reset();
             modale.classList.remove('activeModale');
+            document.body.style.overflow = 'auto';
         })
         .catch(error => {
             alert(`Something went wrong\n${error.message}`)
