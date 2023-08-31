@@ -3437,6 +3437,10 @@ input[type="button"].btn-block {
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none; }
 
+.logo-header {
+  height: 40px;
+}
+
 .navbar-nav {
   display: flex;
   flex-direction: column;
