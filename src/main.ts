@@ -1,7 +1,6 @@
 const formWrapp = document.querySelectorAll('.contactsFormWrapper') as NodeListOf<HTMLElement>;
 const forms = document.querySelectorAll('.contactsForm') as NodeListOf<HTMLFormElement>;
 const button = document.getElementById('getStarted') as HTMLButtonElement;
-const buttonFrom = document.getElementById('buttonFrom') as HTMLButtonElement;
 const modale = document.getElementById('modale') as HTMLElement;
 const contentElements = document.querySelectorAll('.content') as NodeListOf<HTMLSpanElement>;
 const selectLang = document.getElementById('lang') as HTMLSelectElement;
@@ -36,15 +35,16 @@ Array.from(forms).map( form => {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        buttonFrom.innerText = 'Loading ...'
-        buttonFrom.disabled = true;
+        const buttonForm = form.querySelector('#buttonForm') as HTMLButtonElement;
+        buttonForm.innerText = 'Loading ...'
+        buttonForm.disabled = true;
 
         if (form?.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
             form?.classList.add('was-validated');
-            buttonFrom.innerText = 'Inquire Us'
-            buttonFrom.disabled = false;
+            buttonForm.innerText = 'Inquire Us'
+            buttonForm.disabled = false;
             return false;
         }
 
@@ -78,8 +78,8 @@ Array.from(forms).map( form => {
             alert(`Something went wrong\n${error.message}`)
         })
         .finally( () => {
-            buttonFrom.innerText = 'Inquire Us'
-            buttonFrom.disabled = false;
+            buttonForm.innerText = 'Inquire Us'
+            buttonForm.disabled = false;
         });
     });
 });
