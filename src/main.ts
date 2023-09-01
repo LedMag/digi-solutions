@@ -4,6 +4,123 @@ const button = document.getElementById('getStarted') as HTMLButtonElement;
 const modale = document.getElementById('modale') as HTMLElement;
 const contentElements = document.querySelectorAll('.content') as NodeListOf<HTMLSpanElement>;
 const selectLang = document.getElementById('lang') as HTMLSelectElement;
+const topBtn = document.querySelector('.js-top_btn') as HTMLButtonElement;
+const closeButton = document.querySelector('.js-btn-close') as HTMLButtonElement;
+const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement;
+const elementsWithTrigger = document.querySelectorAll('[data-trigger]') as NodeListOf<HTMLElement>;
+const scrollElements = document.querySelectorAll('.js-scroll') as NodeListOf<HTMLAnchorElement>;
+const mainNavbar = document.getElementById('mainNavbar') as HTMLElement;
+const mainNavbarWrapper = document.querySelector(".js-mainNavbar-wrapper") as HTMLElement;
+const elements = document.querySelectorAll('.animation-hidden') as NodeListOf<HTMLElement>;
+
+
+(function() {
+    let windowHeight: number;
+
+    function init() {
+        windowHeight = window.innerHeight;
+    }
+
+    function checkPosition() {
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            const positionFromTop = elements[i].getBoundingClientRect().top;
+
+            if (positionFromTop - windowHeight <= 0) {
+                element.classList.add('fade-in-element');
+                element.classList.remove('animation-hidden');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', checkPosition);
+    window.addEventListener('resize', init);
+
+    init();
+    checkPosition();
+})();
+
+// Sticky Menu Add Class
+window.addEventListener('scroll' , () => {
+    const scroll = window.scrollY;
+
+    if (scroll >= 95) mainNavbarWrapper?.classList.add('is-fixed');
+    else mainNavbarWrapper?.classList.remove('is-fixed');
+});
+
+// Back to Top Jquery
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 300) {
+        topBtn.style.display = 'block';
+    } else {
+        topBtn.style.display = 'none';
+    }
+});
+
+topBtn.addEventListener('click', () => {
+    const scrollDuration = 500;
+    const scrollStep = -window.scrollY / (scrollDuration / 15);
+    const scrollInterval = setInterval(function() {
+        if (window.scrollY !== 0) {
+            window.scrollBy(0, scrollStep);
+        } else {
+            clearInterval(scrollInterval);
+        }
+    }, 15);
+});
+
+// close button 
+closeButton.addEventListener('click', (e) => {
+    navbarCollapse.classList.remove('show');
+    document.body.classList.remove('offcanvas-active');
+});
+
+// Trigger offcanvas menu
+elementsWithTrigger.forEach(function(element) {
+    element.addEventListener('click', () => {
+        const triggerId = this.getAttribute('data-trigger');
+        const triggerElement = document.querySelector(triggerId);
+
+        if (triggerElement) {
+            triggerElement.classList.toggle('show');
+        }
+
+        document.body.classList.toggle('offcanvas-active');
+    });
+});
+
+// handle links with @href started with '#' only
+// Obtener todos los elementos con la clase 'js-scroll'
+
+// Agregar un evento click a cada elemento con la clase 'js-scroll'
+scrollElements.forEach(function(element) {
+    element.addEventListener('click', function(e) {
+        const id = this.getAttribute('href') || '';
+        const headerHt = mainNavbar.offsetHeight;
+        const targetElement = document.querySelector(id) || null;
+        
+        if (!targetElement) {
+            return;
+        }
+
+        e.preventDefault();
+
+        const targetOffset = targetElement.getBoundingClientRect().top + window.scrollY;
+        const pos = targetOffset - headerHt - 20;
+
+        window.scrollTo({
+            top: pos,
+            behavior: 'smooth'
+        });
+
+        if (closeButton) {
+            closeButton.click();
+        }
+    });
+});
+
 
 const i18n = {ES, EN, RU};
 
